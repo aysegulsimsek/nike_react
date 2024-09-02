@@ -1,0 +1,31 @@
+.outer-container {
+    overflow: hidden;
+    /* Dış konteynerin dışında kalan kısımları gizler */
+    width: 100%;
+    position: relative;
+    height: auto;
+}
+
+.zoom-container {
+    overflow: hidden;
+    position: relative;
+    width: 80%;
+    height: 800px;
+    border-radius: 20px;
+    top: -12rem;
+}
+
+.zoom-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    transition: transform 0.3s ease;
+    cursor: zoom-in;
+}
+
+.zoom-container:hover .zoom-image {
+    transform: scale(1.5);
+    cursor: zoom-out;
+    overflow: hidden;
+}

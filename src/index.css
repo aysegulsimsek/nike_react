@@ -1,0 +1,117 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Palanquin:wght@100;200;300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Palanquin:wght@100;200;300;400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+@layer components {
+  .max-container {
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+ 
+  .todo_btn {
+    border: 1px solid rgba(195, 34, 53, 1);
+    padding: 0.5rem 1rem; /* px-4 py-2'ye denk gelir */
+    border-radius: 0.125rem; /* rounded-sm */
+    cursor: pointer;
+    font-weight: 700; /* font-bold */
+    margin-top: 2rem; /* mt-8 */
+    color: #4a5568; /* text-gray-800 */
+    transition: all 0.6s linear; /* transition-all duration-[0.6s] ease-linear */
+    position: relative;
+  
+}
+
+
+.todo_btn::before {
+    content: "";
+    background: radial-gradient(circle, rgba(195,34,53,1) 0%, rgba(253,62,45,0.8884147408963585) 100%);
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: transform 1s cubic-bezier(0.5, 1.6, 0.4, 0.7);
+    transform-origin: center center;
+    transition-timing-function: cubic-bezier(0.5, 1.6, 0.4, 0.7);
+    transform: scaleX(0);
+    border-radius: 9999px;
+    
+}
+
+.todo_btn:hover::before {
+    transform: scaleX(1);
+    color: #fff;
+}
+.nike {
+  background: linear-gradient(90deg, rgba(180,58,58,1) 0%, rgba(253,29,29,1) 50%, rgba(252,115,69,1) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent; /* Metni görünmez yaparak sadece gradienti görünür hale getirir */
+}
+
+}
+
+  .input {
+    @apply sm:flex-1 max-sm:w-full text-base leading-normal text-slate-gray pl-5 max-sm:p-5 outline-none sm:border-none border max-sm:border-slate-gray max-sm:rounded-full;
+  }
+
+@layer utilities {
+  .padding {
+    @apply sm:px-16 px-8 sm:py-24 py-12;
+  }
+  .bgRed {
+    @apply bg-gradient-to-r from-[#b43a3a] via-[#fd1d1d] to-[#fc7345] text-white-400;
+  }
+  
+  .padding-x {
+    @apply sm:px-16 px-8;
+  }
+
+  .padding-y {
+    @apply sm:py-24 py-12;
+  }
+
+  .padding-l {
+    @apply sm:pl-16 pl-8;
+  }
+
+  .padding-r {
+    @apply sm:pr-16 pr-8;
+  }
+
+  .padding-t {
+    @apply sm:pt-24 pt-12;
+  }
+
+  .padding-b {
+    @apply sm:pb-24 pb-12;
+  }
+
+  .info-text {
+    @apply font-montserrat text-slate-gray text-lg leading-7;
+  }
+}
+
+
+.notFound {
+  background: url("https://th.bing.com/th/id/R.685f600b19b513f9adc3b75e85d5e6de?rik=A7YEpy5r%2b%2bo8Bg&riu=http%3a%2f%2fpm1.aminoapps.com%2f8296%2f05a9a14aa4568940b923e197f0240e3cd18a20a2r1-2028-1188v2_uhq.jpg&ehk=%2b0n72l0CLIvsxxQqMSQ8iWp8WWktnhjNtWi6q3nEJW8%3d&risl=&pid=ImgRaw&r=0");
+  width: 100%;
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  object-fit: cover;
+}
+
+/* ctrl shift s yap */
