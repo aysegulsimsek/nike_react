@@ -6,6 +6,8 @@ import {  createBrowserRouter, RouterProvider } from 'react-router-dom'
 import ProductDetails from './components/ProductDetails.jsx'
 import Notfound from './components/Notfound.jsx'
 import Products from './pages/Products.jsx'
+import PaymentForm from './pages/PaymentForm.jsx'
+
 const router = createBrowserRouter([
   {
     path: '/',
@@ -20,6 +22,11 @@ const router = createBrowserRouter([
   {
     path: '/details/:URL',
     element:<ProductDetails/>
+  },
+  {
+    path: '/payment',
+    element: <PaymentForm/>,
+    errorElement:<Notfound/>
   },
 ])
 

@@ -28,36 +28,36 @@ export const statistics = [
     { value: '250k+', label: 'Customers' },
 ];
 
-export const products = [{
-        URL: 'shoe4',
-        imgURL: shoe4,
-        name: "Nike Air Jordan-01",
-        price: "$200.20",
-        rate: 4.8
-    },
-    {
-        URL: 'shoe5',
-        imgURL: shoe5,
-        name: "Nike Air Jordan-10",
-        price: "$210.20",
-        rate: 4.5
+// export const products = [{
+//         URL: 'shoe4',
+//         imgURL: shoe4,
+//         name: "Nike Air Jordan-01",
+//         price: "$200.20",
+//         rate: 4.8
+//     },
+//     {
+//         URL: 'shoe5',
+//         imgURL: shoe5,
+//         name: "Nike Air Jordan-10",
+//         price: "$210.20",
+//         rate: 4.5
 
-    },
-    {
-        URL: 'shoe6',
-        imgURL: shoe6,
-        name: "Nike Air Jordan-100",
-        price: "$220.20",
-        rate: 3.9
-    },
-    {
-        URL: 'shoe7',
-        imgURL: shoe7,
-        name: "Nike Air Jordan-001",
-        price: "$230.20",
-        rate: 4.1
-    },
-];
+//     },
+//     {
+//         URL: 'shoe6',
+//         imgURL: shoe6,
+//         name: "Nike Air Jordan-100",
+//         price: "$220.20",
+//         rate: 3.9
+//     },
+//     {
+//         URL: 'shoe7',
+//         imgURL: shoe7,
+//         name: "Nike Air Jordan-001",
+//         price: "$230.20",
+//         rate: 4.1
+//     },
+// ];
 
 export const services = [{
         imgURL: truckFast,

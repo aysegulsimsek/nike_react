@@ -5,8 +5,8 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { Badge, IconButton } from '@mui/material';
 import { IoBagHandleOutline } from "react-icons/io5";
 import CloseIcon from '@mui/icons-material/Close';
-import Drawer from '@mui/material/Drawer';
-
+import CartDrawer from './CartDrawer'; 
+import { calculateTotalItems } from './CartDrawer'; 
 const Nav = () => {
   const [openMenu, setOpenMenu] = useState(true);
   const [openDrawer, setOpenDrawer] = useState(false);
@@ -19,6 +19,9 @@ const Nav = () => {
 
   const handleClickDrawer = () => {
     setOpenDrawer(!openDrawer);
+  };
+  const handleCloseDrawer = () => {
+    setOpenDrawer(false);
   };
 
   const handleScroll = () => {
@@ -42,7 +45,14 @@ const Nav = () => {
       };
     }
   }, [lastScrollY]);
+  const [cartItems, setCartItems] = useState([]);
 
+  useEffect(() => {
+    const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
+    setCartItems(storedCart);
+  }, []);
+
+  const totalItems = calculateTotalItems(cartItems);
   return (
     <header className={`fixed padding-x py-4 z-20  w-full transition-transform duration-300 ${isVisible ? 'translate-y-0 z-10 border-b bg-white' : '-translate-y-full'}${lastScrollY === 0 ? "bg-transparent border-b-0" : ""}`}>
       <nav className='flex justify-between items-center max-container'>
@@ -70,15 +80,14 @@ const Nav = () => {
               </IconButton>
             </div>
         }
-        <div className='flex max-lg:hidden' onClick={handleClickDrawer}>
+        <div className='flex max-lg:hidden' >
           {
             openDrawer ?
-              <Drawer open={openDrawer} anchor='right' onClose={handleClickDrawer}>
-                <h1 className='text-4xl p-5'>Sepetim</h1>
-              </Drawer>
+            <CartDrawer open={openDrawer}  toggleDrawer={handleCloseDrawer} />
+             
               :
-              <IconButton sx={{ fontSize: '26px' }}>
-                <Badge badgeContent={4} color="primary">
+              <IconButton sx={{ fontSize: '26px' }} onClick={handleClickDrawer}>
+                <Badge badgeContent={totalItems} color="primary">
                 <IoBagHandleOutline />
 
           </Badge>

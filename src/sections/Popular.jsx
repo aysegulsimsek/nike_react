@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { products } from '../constants'
 import PopularProductCard from '../components/PopularProductCard'
+import { products } from '../allProducts'
 
 const Popular = () => {
 
@@ -14,7 +14,7 @@ const Popular = () => {
       </div>
      
         <div className="mt-16 grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 sm:gap-4 gap-14 select-none">
-          {products.map((item) => (
+          {products.slice(0,4).map((item) => (
             <PopularProductCard key={item.name} {...item} />
           ))}
         </div>

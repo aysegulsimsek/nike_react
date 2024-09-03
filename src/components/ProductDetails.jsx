@@ -39,7 +39,8 @@ console.log(detailData)
   }, [URL]);
 
 
-  if (!detailData) {
+  // burada kodun hata veriyor burada detaildata yoksa nın dışında ek olarak imgurl yoksa da yı eklememiz lazım.
+  if (!detailData || !detailData.imgURLs) {  
     return <Notfound/>;
   }
 
@@ -50,11 +51,15 @@ console.log(detailData)
       <div className='w-full absolute mr-auto ml-auto mt-[120px] '>
         <div className='flex flex-1 flex-col lg:flex-row py-5 px-10 max-sm:w-full  max-lg:w-full xl:w-full mr-auto ml-auto bg-slate-50 max-sm:flex-col max-sm:items-center'>
           <div className='flex xl:flex-col'>
-          {
-            detailData.imgURLs.map((index) => (
-          <img src={index} alt={detailData.name} width={150} className='mt-3' />
-        ))
-       }
+          {(detailData.imgURLs || []).map((item, i) => (
+              <img
+                key={i}
+                src={item}
+                alt={detailData.name}
+                width={150}
+                className="mt-3"
+              />
+            ))}
           </div>
           <div className=''>
       {isXLarge ? (
@@ -63,7 +68,6 @@ console.log(detailData)
         <img src={detailData.imgURLs[0]} alt=" " className='max-lg:w-full max-sm:w-full mr-auto' />
       )}
     </div>
-          
     <div className=' max-lg:ml-3 w-1/2 max-sm:w-full max-sm:ml-0 flex flex-col xl:-ml-40  gap-2.5'>
             <div className='mt-8 flex justify-start gap-2.5'>
               <img src={star} alt="rating" width={24} height={24} />
