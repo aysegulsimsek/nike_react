@@ -6,12 +6,18 @@ import { Badge, IconButton } from '@mui/material';
 import { IoBagHandleOutline } from "react-icons/io5";
 import CloseIcon from '@mui/icons-material/Close';
 import CartDrawer from './CartDrawer'; 
-import { calculateTotalItems } from './CartDrawer'; 
+import { useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom'; 
 const Nav = () => {
   const [openMenu, setOpenMenu] = useState(true);
   const [openDrawer, setOpenDrawer] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  
+  
+  const cartItems = useSelector((state) => state.cart.items) || [];
+  
+  const totalUniqueItems = cartItems.length;
 
   const handleClickMenu = () => {
     setOpenMenu(!openMenu);
@@ -45,16 +51,10 @@ const Nav = () => {
       };
     }
   }, [lastScrollY]);
-  const [cartItems, setCartItems] = useState([]);
 
-  useEffect(() => {
-    const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
-    setCartItems(storedCart);
-  }, []);
-
-  const totalItems = calculateTotalItems(cartItems);
+  const location = useLocation();
   return (
-    <header className={`fixed padding-x py-4 z-20  w-full transition-transform duration-300 ${isVisible ? 'translate-y-0 z-10 border-b bg-white' : '-translate-y-full'}${lastScrollY === 0 ? "bg-transparent border-b-0" : ""}`}>
+    <header className={`fixed padding-x py-4 z-20  w-full transition-transform duration-300 ${isVisible ? 'translate-y-0 z-10 border-b bg-white' : '-translate-y-full'} ${location.pathname === '/' && lastScrollY === 0 ? "bg-transparent border-b-0" : ""}`}>
       <nav className='flex justify-between items-center max-container'>
         <a href="/">
           <img src={headerLogo} alt="Logo" width={130} height={29} />
@@ -87,7 +87,7 @@ const Nav = () => {
              
               :
               <IconButton sx={{ fontSize: '26px' }} onClick={handleClickDrawer}>
-                <Badge badgeContent={totalItems} color="primary">
+                <Badge  badgeContent={totalUniqueItems} color="primary">
                 <IoBagHandleOutline />
 
           </Badge>

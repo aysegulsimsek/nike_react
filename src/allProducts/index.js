@@ -51,6 +51,8 @@ export const products = [{
         imgURLs: [threeShoe1, threeShoe2, threeShoe3, threeShoe4],
         name: "Nike Air Force 1 '07 Se",
         description: "Kadın Ayakkabısı",
+        specious: "Sneaker",
+
         price: 4699,
         rate: 4.4,
     },

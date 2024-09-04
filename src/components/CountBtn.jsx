@@ -3,8 +3,8 @@ import { FaMinus } from "react-icons/fa6";
 import { FaPlus } from "react-icons/fa6";
 const CountBtn = () => {
   const [quantity, setQuantity] = useState(1);
-  
-    const increase = () => {
+
+     const increase = () => {
       setQuantity(quantity + 1)
     }
     const decrement = () => {

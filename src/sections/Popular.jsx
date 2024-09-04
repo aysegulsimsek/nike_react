@@ -1,8 +1,24 @@
 import React, { useState } from 'react'
 import PopularProductCard from '../components/PopularProductCard'
 import { products } from '../allProducts'
+import Button from '../components/Button'
+import { useNavigate } from 'react-router-dom'
+import { Backdrop, CircularProgress } from '@mui/material';
 
 const Popular = () => {
+  const [openBackdrop, setOpenBackdrop] = React.useState(false);
+  const navigate = useNavigate();
+
+  const handleClose = () => {
+    setOpenBackdrop(false);
+  };
+  const handleOpen = () => {
+    setOpenBackdrop(true);
+    setTimeout(() => {
+      navigate("/products")
+    }, 2000); 
+
+  }
 
   return (
     <section id='products' className='max-container max-sm:mt-12'>
@@ -17,8 +33,26 @@ const Popular = () => {
           {products.slice(0,4).map((item) => (
             <PopularProductCard key={item.name} {...item} />
           ))}
-        </div>
-      
+      </div>
+      <div className='flex justify-center' onClick={handleOpen}>
+      <Button label='See All Prouducts'/>
+      <Backdrop
+  sx={{
+    color: '#fff',
+    zIndex: (theme) => theme.zIndex.drawer + 1,
+    display: 'flex', // Backdrop içeriğini tam ortalamak için flex düzeni
+    alignItems: 'center',
+    justifyContent: 'center',
+  }}
+  open={openBackdrop}
+  onClick={handleClose}
+>
+  <div className='flex flex-col items-center'>
+    <CircularProgress color="inherit" size={60} /> {/* Boyutu büyüttük */}
+    <h1 className='mt-4 text-xl font-semibold'>Yönlendiriliyorsunuz...</h1> {/* Araya mesafe ve daha büyük bir yazı ekledik */}
+  </div>
+</Backdrop>
+      </div>
     </section>
   )
 }

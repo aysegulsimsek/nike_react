@@ -3,10 +3,12 @@ import { createRoot } from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
 import {  createBrowserRouter, RouterProvider } from 'react-router-dom'
-import ProductDetails from './components/ProductDetails.jsx'
+import ProductDetails from './pages/ProductDetails'
 import Notfound from './components/Notfound.jsx'
 import Products from './pages/Products.jsx'
 import PaymentForm from './pages/PaymentForm.jsx'
+import { Provider } from 'react-redux';
+import { store } from './redux/store.jsx';
 
 const router = createBrowserRouter([
   {
@@ -31,9 +33,9 @@ const router = createBrowserRouter([
 ])
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
+  <Provider store={store}>
 
       <RouterProvider router={router} />
      
-  </StrictMode>,
+  </Provider>,
 )

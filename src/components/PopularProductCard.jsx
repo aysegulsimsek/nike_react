@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import { star } from '../assets/icons';
 import { useNavigate } from 'react-router-dom';
-import Zoom from './Zoom';
 
 const PopularProductCard = ({ imgURL, name, price, rate, URL }) => {
   const navigate = useNavigate();
@@ -26,7 +25,7 @@ const PopularProductCard = ({ imgURL, name, price, rate, URL }) => {
           </p>
         </div>
         <h3 className='mt-2 text-2xl leading-normal font-semibold font-palanquin select-text'>{name}</h3>
-        <p className='mt-2 font-semibold font-montserrat text-coral-red text-2xl leading-normal'>{price}</p>
+        <p className='mt-2 font-semibold font-montserrat text-coral-red text-2xl leading-normal'>{price} TRY</p>
       </div>
     </div>
   );
