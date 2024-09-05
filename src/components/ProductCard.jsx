@@ -1,38 +1,60 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import "../css/Shake.css";
 import { addToCart } from "../redux/slices/createSlice";
 import NewBtn from "../components/NewBtn";
 import { IoBagAddOutline } from "react-icons/io5";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { auth } from '../Firebase'
+import {  onAuthStateChanged } from 'firebase/auth';
+import { toast, ToastContainer } from "react-toastify";
 const ProductCard = ({ name, imgURLs, imgURL, specious, price, URL, i }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [user, setUser] = useState(null);
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+        if (user) {
+            setUser(auth.currentUser);
+        } else {
+            setUser(null);
+        }
+    });
+
+    return () => unsubscribe(); 
+  }, [auth]);
 
   const addToCartHandler = () => {
-    dispatch(
-      addToCart({
-        name,
-        imgURLs: imgURL,
-        specious,
-        price,
-        URL,
-        quantity: 1,
-      })
-    );
-    toast.success("Sepete Eklendi");
+    if (user) {
+      dispatch(
+        addToCart({
+          name,
+          imgURLs: imgURL,
+          specious,
+          price,
+          URL,
+          quantity: 1,
+        })
+      );
+    } else {
+      toast.error("Giriş yapınız")
+      setInterval(() => {
+      navigate("/authantication")
+        
+      },[2000])
+    }
+
+   
   };
 
-  console.log(imgURLs);
 
   return (
     <div
       key={i}
       className="col-6 col-md-3 product-grid-item-container p-4 mb-4 bg-white shadow-lg rounded-lg "
     >
-      <ToastContainer position="bottom-right" autoClose={1500} />
+<ToastContainer position="bottom-right"/>
+
       <img
         src={imgURLs[0]}
         alt={name}

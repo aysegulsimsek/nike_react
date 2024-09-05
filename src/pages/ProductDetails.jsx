@@ -1,18 +1,21 @@
 
 import { useState, useEffect, useRef } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { products } from "../allProducts";
 import { star } from "../assets/icons";
 import Notfound from "../components/Notfound";
 import Nav from "../components/Nav";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { auth } from '../Firebase'
+import {  onAuthStateChanged } from 'firebase/auth';
 import { IoBagAddOutline } from "react-icons/io5";
 import NewBtn from "../components/NewBtn";
 import CountBtn from "../components/CountBtn";
 import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
 import { addToCart } from "../redux/slices/createSlice";
 import { useDispatch } from "react-redux";
+import { toast, ToastContainer } from "react-toastify";
+import SmBasket from '../components/SmBasket'
+
 
 const ProductDetails = () => {
   const { URL } = useParams();
@@ -21,6 +24,20 @@ const ProductDetails = () => {
   const [isFavorite, setIsFavorite] = useState(false);
   const [selectedSize, setSelectedSize] = useState(null);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const [user, setUser] = useState(null);
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+        if (user) {
+            setUser(auth.currentUser);
+        } else {
+            setUser(null);
+        }
+    });
+
+    return () => unsubscribe(); 
+  }, [auth]);
 
   const sizes = [40, 40.5, 41, 42, 42.5, 43, 44, 44.5];
 
@@ -61,40 +78,40 @@ const ProductDetails = () => {
   }, [URL]);
 
   const addToCartHandler = () => {
-    if (selectedSize === null) {
-      toast.error("Lütfen beden seçiniz.");
-      return;
+    if (user) {
+      if (selectedSize === null) {
+        return;
+      }
+      dispatch(
+        addToCart({
+          name: detailData.name,
+          imgURLs: detailData.imgURLs[0],
+          specious: detailData.specious,
+          price: detailData.price,
+          URL: detailData.URL,
+          quantity: 1,
+          selectedSize,
+        })
+      );
+    } else {
+      toast.error("Giriş yapınız.")
+      setInterval(() => {
+        navigate("/authantication")
+      },[2000])
     }
+   
 
-    console.log({
-      imgURLs: detailData.imgURLs[0],
-    });
-
-    dispatch(
-      addToCart({
-        name: detailData.name,
-        imgURLs: detailData.imgURLs[0],
-        specious: detailData.specious,
-        price: detailData.price,
-        URL: detailData.URL,
-        quantity: 1,
-        selectedSize,
-      })
-    );
-
-    toast.success("Ürün sepete eklendi!");
   };
-
   if (!detailData || !detailData.imgURLs) {
     return <Notfound />;
   }
 
   return (
-    <main className="px-4 py-6">
+    <main className="p-0">
       <Nav />
-      <ToastContainer position="bottom-right" autoClose={1500} />
-
-      <div className="flex flex-col mt-[86px] lg:flex-row w-full items-center justify-between max-md:justify-start lg:space-x-4 space-y-6 lg:space-y-0 max-md:space-y-0">
+      <ToastContainer position="bottom-right" />
+     
+      <div className="px-4 pt-[84px] pb-5 flex flex-col lg:flex-row w-full items-center justify-between max-md:justify-start lg:space-x-4 space-y-6 lg:space-y-0 max-md:space-y-0">
         <div className="w-full lg:w-1/2 flex flex-col gap-2 h-[85vh]">
           <div
             className="w-full h-[60vh] lg:h-[75%] md:h-[50%] bg-[#f6f6f6] rounded-md overflow-hidden relative"
@@ -194,6 +211,9 @@ const ProductDetails = () => {
             </div>
           </div>
         </div>
+        <section className='hidden max-lg:block'>
+      <SmBasket/>
+    </section>
       </div>
     </main>
   );

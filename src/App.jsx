@@ -8,10 +8,13 @@ import CustomerReviews from './sections/CustomerReviews'
 import Subscribe from './sections/Subscribe'
 import Footer from './sections/Footer'
 import Nav from './components/Nav'
-
+import SmBasket from './components/SmBasket'
 const App = () => (
   <main className='relative'>
-  <Nav/>
+    <Nav />
+    <section className='hidden max-lg:block'>
+      <SmBasket/>
+    </section>
     <section className='xl:padding-l wide:padding-r padding-b'>
       <Hero/>
     </section>

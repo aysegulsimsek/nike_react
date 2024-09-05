@@ -1,17 +1,10 @@
 import React from "react";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+
 const NewBtn = ({ label, icon, scale, rounded, bgRed, iconURL }) => {
-  const handleClick = () => {
-    if (label == "Favorilere Ekle") {
-      toast.success("Favorilere Eklendi");
-    }
-    // if(label == "Sepete Ekle")
-    //   toast.success("Sepete Eklendi")
-  };
+ 
 
   return (
-    <div className="flex" onClick={handleClick}>
+    <div className="flex" >
       <button
         className={`border items-center w-full gap-2 flex justify-center border-red-400 shadow-xl px-5 py-3 text-lg font-semibold text-red-600 ml-auto mr-auto  uppercase font-palanquin ${
           scale

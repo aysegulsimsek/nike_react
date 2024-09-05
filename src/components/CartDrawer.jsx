@@ -7,6 +7,7 @@ import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ClearAllIcon from '@mui/icons-material/ClearAll'; 
+import { MdClose } from "react-icons/md";
 import { incrementQuantity, decrementQuantity, removeFromCart,clearCart } from '../redux/slices/createSlice';
 const CartDrawer = ({ open, toggleDrawer }) => {
   const [openBackdrop, setOpenBackdrop] = useState(false);
@@ -46,13 +47,18 @@ const CartDrawer = ({ open, toggleDrawer }) => {
   const handleClearCart = () => {
     dispatch(clearCart());
   };
+
   return (
     <Drawer 
     anchor="right" 
     open={open} 
-    onClose={toggleDrawer}
+      onClose={toggleDrawer}
+      
   >
-    <div className="p-6 w-100 bg-white flex flex-col">
+      <div className="p-6 w-100 bg-white flex flex-col relative">
+        <div onClick={toggleDrawer} className='absolute top-2 right-2 cursor-pointer lg:hidden'>
+          <MdClose size={26}/>
+        </div>
       <h2 className="text-2xl font-semibold text-gray-800 mb-4">Sepetiniz</h2>
       <div className="flex-grow overflow-y-auto">
         {cartItems.length > 0 ? (
