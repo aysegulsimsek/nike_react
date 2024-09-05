@@ -112,28 +112,36 @@ const Nav = () => {
               </IconButton>
             </div>
         }
-        <div className='flex max-lg:hidden' >
-          {
-            user ? (
-              <div onClick={logout}>
-              <button>Çıkış</button>
-            </div>
-            ) : ""
-          }
-         
-          {
-            openDrawer ?
-            <CartDrawer open={openDrawer}  toggleDrawer={handleCloseDrawer} />
-             
-              :
-              <IconButton sx={{ fontSize: '26px' }} onClick={handleClickDrawer}>
-                <Badge  badgeContent={totalUniqueItems} color="primary">
-                <IoBagHandleOutline />
+       <div className='flex items-center max-lg:hidden'>
+ 
 
-          </Badge>
-              </IconButton>
-          }
-        </div>
+  <div className="ml-4">
+    {openDrawer ? (
+      <CartDrawer open={openDrawer} toggleDrawer={handleCloseDrawer} />
+    ) : (
+      <button
+        className="relative flex items-center justify-center bg-gray-100 hover:bg-gray-200 rounded-full p-3 focus:outline-none focus:ring focus:ring-blue-300"
+        onClick={handleClickDrawer}
+      >
+        <Badge
+          badgeContent={totalUniqueItems}
+          color="primary"
+          className="absolute top-0 right-0"
+        >
+          <IoBagHandleOutline className="text-2xl text-gray-700" />
+        </Badge>
+      </button>
+    )}
+          </div>
+          {user ? (
+    <div onClick={logout} className="ml-3">
+      <button className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring focus:ring-red-300">
+        Çıkış Yap
+      </button>
+    </div>
+  ) : ""}
+</div>
+
       </nav>
     </header>
   );
