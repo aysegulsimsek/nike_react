@@ -7,14 +7,44 @@ import { IoBagHandleOutline } from "react-icons/io5";
 import CloseIcon from '@mui/icons-material/Close';
 import CartDrawer from './CartDrawer'; 
 import { useSelector } from 'react-redux';
-import { useLocation } from 'react-router-dom'; 
+import { useLocation, useNavigate } from 'react-router-dom'; 
+import { auth } from '../Firebase'
+import { signOut, onAuthStateChanged } from 'firebase/auth';
+import { toast ,ToastContainer} from 'react-toastify';
 const Nav = () => {
   const [openMenu, setOpenMenu] = useState(true);
   const [openDrawer, setOpenDrawer] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const navigate = useNavigate();
+
+  const [user, setUser] = useState(null);
   
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+        if (user) {
+            setUser(auth.currentUser);
+        } else {
+            setUser(null);
+        }
+    });
+
+    return () => unsubscribe(); // Component unmount olduğunda dinleyiciyi kaldırır.
+  }, [auth]);
   
+  const logout = async () => {
+    try {
+        await signOut(auth)
+        if (signOut) {
+            toast.success('Çıkış')
+            navigate('/authantication')
+        }
+    } catch (error) {
+        toast.error(error.message)
+    }
+
+}
+
   const cartItems = useSelector((state) => state.cart.items) || [];
   
   const totalUniqueItems = cartItems.length;
@@ -55,6 +85,8 @@ const Nav = () => {
   const location = useLocation();
   return (
     <header className={`fixed padding-x py-4 z-20  w-full transition-transform duration-300 ${isVisible ? 'translate-y-0 z-10 border-b bg-white' : '-translate-y-full'} ${location.pathname === '/' && lastScrollY === 0 ? "bg-transparent border-b-0" : ""}`}>
+        <ToastContainer  position="top-right" autoClose={1500} />
+     
       <nav className='flex justify-between items-center max-container'>
         <a href="/">
           <img src={headerLogo} alt="Logo" width={130} height={29} />
@@ -81,6 +113,14 @@ const Nav = () => {
             </div>
         }
         <div className='flex max-lg:hidden' >
+          {
+            user ? (
+              <div onClick={logout}>
+              <button>Çıkış</button>
+            </div>
+            ) : ""
+          }
+         
           {
             openDrawer ?
             <CartDrawer open={openDrawer}  toggleDrawer={handleCloseDrawer} />

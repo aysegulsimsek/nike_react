@@ -23,6 +23,12 @@ import {
     fiveShoe2,
     fiveShoe3,
     fiveShoe4,
+    Shoe6,
+    Shoe7,
+    Shoe8,
+    Shoe9,
+    Shoe10,
+    Shoe11,
 } from "../allProducts/images";
 
 export const products = [{
@@ -78,7 +84,7 @@ export const products = [{
     },
     {
         URL: "FZ3773_100",
-        imgURL: Shoe4,
+        imgURL: Shoe6,
         imgURLs: [
             "https://img-sneaksupincommerce.mncdn.com/Content/Images/Thumbs/0173419_nike-w-air-force-1-shadow-fz3773-100.jpeg",
             "https://img-sneaksupincommerce.mncdn.com/Content/Images/Thumbs/0173421_nike-w-air-force-1-shadow-fz3773-100.jpeg",
@@ -93,7 +99,7 @@ export const products = [{
     },
     {
         URL: "shoe7",
-        imgURL: Shoe4,
+        imgURL: Shoe7,
         imgURLs: [
             "https://img-sneaksupincommerce.mncdn.com/Content/Images/Thumbs/0148189_nike-w-cortez-dn1791-100.jpeg",
             "https://img-sneaksupincommerce.mncdn.com/Content/Images/Thumbs/0148190_nike-w-cortez-dn1791-100.jpeg",
@@ -109,7 +115,7 @@ export const products = [{
     },
     {
         URL: "DV0833_108",
-        imgURL: Shoe4,
+        imgURL: Shoe6,
         imgURLs: [
             "https://img-sneaksupincommerce.mncdn.com/Content/Images/Thumbs/0197621_nike-dunk-low-retro-dv0833-108.jpeg",
             "https://img-sneaksupincommerce.mncdn.com/Content/Images/Thumbs/0197624_nike-dunk-low-retro-dv0833-108.jpeg",
@@ -125,7 +131,7 @@ export const products = [{
     },
     {
         URL: "DV0833_100",
-        imgURL: Shoe4,
+        imgURL: Shoe8,
         imgURLs: [
             "https://img-sneaksupincommerce.mncdn.com/Content/Images/Thumbs/0144679_nike-dunk-low-retro-bttys-dv0833-100.jpeg",
             "https://img-sneaksupincommerce.mncdn.com/Content/Images/Thumbs/0144680_nike-dunk-low-retro-bttys-dv0833-100.jpeg",
@@ -141,7 +147,7 @@ export const products = [{
     },
     {
         URL: "DV0833_104",
-        imgURL: Shoe4,
+        imgURL: Shoe9,
         imgURLs: [
             "https://img-sneaksupincommerce.mncdn.com/Content/Images/Thumbs/0186982_nike-dunk-low-retro-bttys-dv0833-104.jpeg",
             "https://img-sneaksupincommerce.mncdn.com/Content/Images/Thumbs/0186983_nike-dunk-low-retro-bttys-dv0833-104.jpeg",
@@ -158,7 +164,7 @@ export const products = [{
     // // 10 additional products
     {
         URL: "FV7275_401",
-        imgURL: Shoe4,
+        imgURL: Shoe10,
         imgURLs: [
             "https://img-sneaksupincommerce.mncdn.com/Content/Images/Thumbs/0192918_nike-lebron-xxi-premium-fv7275-401.jpeg",
             "https://img-sneaksupincommerce.mncdn.com/Content/Images/Thumbs/0192919_nike-lebron-xxi-premium-fv7275-401.jpeg",
@@ -174,7 +180,7 @@ export const products = [{
     },
     {
         URL: "FQ8249_100",
-        imgURL: Shoe4,
+        imgURL: Shoe11,
         imgURLs: [
             "https://img-sneaksupincommerce.mncdn.com/Content/Images/Thumbs/0193340_nike-dunk-low-retro-se-fq8249-100.jpeg",
             "https://img-sneaksupincommerce.mncdn.com/Content/Images/Thumbs/0193343_nike-dunk-low-retro-se-fq8249-100.jpeg",

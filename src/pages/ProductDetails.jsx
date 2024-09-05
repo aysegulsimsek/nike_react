@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { products } from "../allProducts";
@@ -11,7 +12,7 @@ import NewBtn from "../components/NewBtn";
 import CountBtn from "../components/CountBtn";
 import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
 import { addToCart } from "../redux/slices/createSlice";
-import { useDispatch } from 'react-redux';
+import { useDispatch } from "react-redux";
 
 const ProductDetails = () => {
   const { URL } = useParams();
@@ -19,7 +20,7 @@ const ProductDetails = () => {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [isFavorite, setIsFavorite] = useState(false);
   const [selectedSize, setSelectedSize] = useState(null);
-  const dispatch = useDispatch(); // useDispatch bileşen düzeyinde en üstte
+  const dispatch = useDispatch();
 
   const sizes = [40, 40.5, 41, 42, 42.5, 43, 44, 44.5];
 
@@ -64,17 +65,11 @@ const ProductDetails = () => {
       toast.error("Lütfen beden seçiniz.");
       return;
     }
-  
+
     console.log({
-      name: detailData.name,
       imgURLs: detailData.imgURLs[0],
-      specious: detailData.specious,
-      price: detailData.price,
-      URL: detailData.URL,
-      quantity: 1,
-      selectedSize,
     });
-  
+
     dispatch(
       addToCart({
         name: detailData.name,
@@ -86,10 +81,9 @@ const ProductDetails = () => {
         selectedSize,
       })
     );
-    
+
     toast.success("Ürün sepete eklendi!");
   };
-  
 
   if (!detailData || !detailData.imgURLs) {
     return <Notfound />;
@@ -101,7 +95,6 @@ const ProductDetails = () => {
       <ToastContainer position="bottom-right" autoClose={1500} />
 
       <div className="flex flex-col mt-[86px] lg:flex-row w-full items-center justify-between max-md:justify-start lg:space-x-4 space-y-6 lg:space-y-0 max-md:space-y-0">
-        {/* Sol Kısım: Resim */}
         <div className="w-full lg:w-1/2 flex flex-col gap-2 h-[85vh]">
           <div
             className="w-full h-[60vh] lg:h-[75%] md:h-[50%] bg-[#f6f6f6] rounded-md overflow-hidden relative"
@@ -134,7 +127,6 @@ const ProductDetails = () => {
           </div>
         </div>
 
-        {/* Sağ Kısım: Ürün Detayları */}
         <div className="w-full lg:w-1/2 flex flex-col gap-4 h-auto lg:h-[85vh] py-2 px-4 lg:px-10">
           <div className="flex flex-col space-y-4 lg:space-y-0 lg:flex-row items-center justify-between">
             <div className="font-semibold font-palanquin text-xl lg:text-2xl text-slate-600">
@@ -168,18 +160,7 @@ const ProductDetails = () => {
                 </button>
               ))}
             </div>
-            {/* <div className="flex items-center gap-1">
-              Seçili Beden:{" "}
-              <span className="font-semibold ">
-                {selectedSize === null ? (
-                  <div className="text-red-600 text-sm lg:text-base">
-                    Beden seçiniz!
-                  </div>
-                ) : (
-                  selectedSize
-                )}
-              </span>
-            </div> */}
+           
           </div>
 
           <div className="font-semibold font-montserrat text-xl lg:text-2xl text-coral-red">
@@ -188,11 +169,16 @@ const ProductDetails = () => {
           <div className="flex flex-col gap-4">
             <CountBtn />
             <div className="w-full flex items-center gap-2">
-              <div className="w-full lg:w-[80%]">
+              <div
+                onClick={addToCartHandler}
+                className={`w-full lg:w-[80%] ${
+                  !selectedSize && "opacity-50 cursor-not-allowed"
+                }`}
+              >
                 <NewBtn
+                  selectedSize={selectedSize}
                   label="Sepete Ekle"
                   icon={<IoBagAddOutline size={24} />}
-                  onClick={addToCartHandler}
                 />
               </div>
               <div

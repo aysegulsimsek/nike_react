@@ -22,6 +22,13 @@ import fiveShoe1 from './5shoe1.webp'
 import fiveShoe2 from './5shoe2.webp'
 import fiveShoe3 from './5shoe3.webp'
 import fiveShoe4 from './5shoe4.webp'
+import Shoe6 from './shoe6.webp'
+import Shoe7 from './shoe7.webp'
+import Shoe8 from './shoe8.webp'
+import Shoe9 from './shoe9.webp'
+import Shoe10 from './shoe10.webp'
+import Shoe11 from './shoe11.webp'
+
 
 export {
     Shoe1,
@@ -48,4 +55,10 @@ export {
     fiveShoe2,
     fiveShoe3,
     fiveShoe4,
+    Shoe6,
+    Shoe7,
+    Shoe8,
+    Shoe9,
+    Shoe10,
+    Shoe11
 }

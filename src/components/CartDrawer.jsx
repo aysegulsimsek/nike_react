@@ -60,7 +60,7 @@ const CartDrawer = ({ open, toggleDrawer }) => {
             {cartItems.map((item, index) => (
               <div key={index} className="flex items-center justify-between mb-4">
                 <img 
-                  src={item.imgURLs && item.imgURLs[0] ? item.imgURLs[0] : 'default-image-url.jpg'} 
+                  src={item.imgURLs} 
                   alt={item.name} 
                   className="w-16 h-16 object-cover rounded-md border"
                 />
@@ -123,7 +123,7 @@ const CartDrawer = ({ open, toggleDrawer }) => {
   sx={{
     color: '#fff',
     zIndex: (theme) => theme.zIndex.drawer + 1,
-    display: 'flex', // Backdrop içeriğini tam ortalamak için flex düzeni
+    display: 'flex', 
     alignItems: 'center',
     justifyContent: 'center',
   }}
@@ -131,8 +131,8 @@ const CartDrawer = ({ open, toggleDrawer }) => {
   onClick={handleClose}
 >
   <div className='flex flex-col items-center'>
-    <CircularProgress color="inherit" size={60} /> {/* Boyutu büyüttük */}
-    <h1 className='mt-4 text-xl font-semibold'>Yönlendiriliyorsunuz...</h1> {/* Araya mesafe ve daha büyük bir yazı ekledik */}
+    <CircularProgress color="inherit" size={60} /> 
+    <h1 className='mt-4 text-xl font-semibold'>Yönlendiriliyorsunuz...</h1> 
   </div>
 </Backdrop>
 
